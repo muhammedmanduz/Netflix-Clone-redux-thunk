@@ -1,3 +1,4 @@
+import axios from "axios";
 import api from "../../utils/api";
 import ActionTypes from "../actionTypes";
 
@@ -23,4 +24,42 @@ export const getGenres = () => (dispatch) => {
         payload: err.message,
       })
     );
+};
+
+// favorilerdeki filmleri al
+export const getFavorites = () => (dispatch) => {
+  dispatch({ type: ActionTypes.FAV_LOADING });
+
+  api
+    .get("/account/19719088/favorite/movies")
+    .then((res) =>
+      dispatch({
+        type: ActionTypes.FAV_SUCCESS,
+        payload: res.data.results,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: ActionTypes.FAV_ERROR,
+        payload: err.message,
+      })
+    );
+};
+
+// favorilere ekle / çıkar
+export const toggleFavorite = (movie, isAdd) => (dispatch) => {
+  api
+    .post(`/account/21505970/favorite`, {
+      media_type: "movie",
+      media_id: movie.id,
+      favorite: isAdd,
+    })
+    .then(() => {
+      // isAdd true ise api'a da eklendiği için reducer'a ekleme haberi veriyoruz
+      // isAdd false ise api'danda kaldırdığımız için reducer'a silme haberi gönderiyoruz
+      isAdd
+        ? dispatch({ type: ActionTypes.ADD_TO_FAV, payload: movie })
+        : dispatch({ type: ActionTypes.REMOVE_FAV, payload: movie });
+    })
+    .catch((err) => console.log(err));
 };

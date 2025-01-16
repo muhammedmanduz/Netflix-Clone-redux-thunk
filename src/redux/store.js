@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import genreReducer from "./reducers/genreReducer";
 import { thunk } from "redux-thunk";
-// import favoritesReducer from "./reducers/favouritesReducer";
+import favouritesReducer from "./reducers/favouritesReducer";
 
 const rootReducer = combineReducers({
   genres: genreReducer,
-  //   favorites: favoritesReducer,
+  favorites: favouritesReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

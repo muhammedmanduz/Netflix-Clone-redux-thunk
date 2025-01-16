@@ -1,13 +1,16 @@
 # Kütüphaneler
 
-react-router-dom
-redux
-react-redux
-redux-thunk
-axios
-react-icons
-tailwind
-Kaynaklar
+- react-router-dom
+- redux
+- react-redux
+- redux-thunk
+- axios
+- react-icons
+- tailwind
+- react-player
+
+# Kaynaklar
+
 API: https://developer.themoviedb.org/reference/intro/getting-started
 
 # React.memo(Hero) ne işe yarar?

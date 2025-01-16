@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const genreReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ActionTypes.GENRE_LOADING:
       return { ...state, isLoading: true };
